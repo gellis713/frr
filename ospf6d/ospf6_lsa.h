@@ -127,6 +127,9 @@ struct ospf6_lsa {
 
 	/* lsa instance */
 	struct ospf6_lsa_header *header;
+
+	/* VRF Id */
+	vrf_id_t vrf_id;
 };
 
 #define OSPF6_LSA_HEADERONLY 0x01

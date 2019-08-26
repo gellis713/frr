@@ -105,7 +105,7 @@ static uint8_t ospf6_default_iftype(struct interface *ifp)
 {
 	if (if_is_pointopoint(ifp))
 		return OSPF_IFTYPE_POINTOPOINT;
-	else if (if_is_loopback(ifp))
+	else if (if_is_loopback(ifp) || if_is_vrf(ifp))
 		return OSPF_IFTYPE_LOOPBACK;
 	else
 		return OSPF_IFTYPE_BROADCAST;
@@ -384,7 +384,7 @@ void ospf6_interface_state_update(struct interface *ifp)
 
 	if (if_is_operative(ifp)
 	    && (ospf6_interface_get_linklocal_address(oi->interface)
-		|| if_is_loopback(oi->interface)))
+		|| if_is_loopback(oi->interface) || if_is_vrf(oi->interface)))
 		thread_execute(master, interface_up, oi, 0);
 	else
 		thread_execute(master, interface_down, oi, 0);
@@ -704,7 +704,7 @@ int interface_up(struct thread *thread)
 
 	/* check interface has a link-local address */
 	if (!(ospf6_interface_get_linklocal_address(oi->interface)
-	      || if_is_loopback(oi->interface))) {
+	      || if_is_loopback(oi->interface) || if_is_vrf(oi->interface))) {
 		if (IS_OSPF6_DEBUG_INTERFACE)
 			zlog_debug(
 				"Interface %s has no link local address, can't execute [InterfaceUp]",
@@ -767,7 +767,7 @@ int interface_up(struct thread *thread)
 
 	/* Schedule Hello */
 	if (!CHECK_FLAG(oi->flag, OSPF6_INTERFACE_PASSIVE)
-	    && !if_is_loopback(oi->interface)) {
+	    && !if_is_loopback(oi->interface) && !if_is_vrf(oi->interface)) {
 		oi->thread_send_hello = NULL;
 		thread_add_event(master, ospf6_hello_send, oi, 0,
 				 &oi->thread_send_hello);
@@ -894,7 +894,7 @@ static int ospf6_interface_show(struct vty *vty, struct interface *ifp)
 	struct ospf6_lsa *lsa;
 
 	/* check physical interface type */
-	if (if_is_loopback(ifp))
+	if (if_is_loopback(ifp) || if_is_vrf(ifp))
 		type = "LOOPBACK";
 	else if (if_is_broadcast(ifp))
 		type = "BROADCAST";

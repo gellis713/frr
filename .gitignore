@@ -92,3 +92,10 @@ compile_commands.json
 .dirstamp
 refix
 .vscode
+*.suo
+*.db
+*.ipch
+/.vs/slnx.sqlite
+/.vs/ProjectSettings.json
+/.vs/frr/v15/Browse.VC.opendb
+/.vs/VSWorkspaceState.json

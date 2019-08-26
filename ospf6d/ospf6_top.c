@@ -320,9 +320,10 @@ void ospf6_router_id_update(void)
 /* start ospf6 */
 DEFUN_NOSH (router_ospf6,
        router_ospf6_cmd,
-       "router ospf6",
+       "router ospf6 [vrf NAME]",
        ROUTER_STR
-       OSPF6_STR)
+       OSPF6_STR
+       VRF_CMD_HELP_STR)
 {
 	if (ospf6 == NULL) {
 		ospf6 = ospf6_create();
@@ -338,10 +339,11 @@ DEFUN_NOSH (router_ospf6,
 /* stop ospf6 */
 DEFUN (no_router_ospf6,
        no_router_ospf6_cmd,
-       "no router ospf6",
+       "no router ospf6 [vrf NAME]",
        NO_STR
        ROUTER_STR
-       OSPF6_STR)
+       OSPF6_STR
+       VRF_CMD_HELP_STR)
 {
 	if (ospf6 == NULL)
 		vty_out(vty, "OSPFv3 is not configured\n");
@@ -1010,6 +1012,22 @@ DEFUN (show_ipv6_ospf6_route_type_detail,
 	OSPF6_CMD_CHECK_RUNNING();
 
 	ospf6_route_table_show(vty, 4, argc, argv, ospf6->route_table);
+	return CMD_SUCCESS;
+}
+
+
+DEFUN(show_ipv6_ospf6_vrfs,
+	show_ipv6_ospf6_vrfs_cmd,
+	"show ipv6 ospf6 vrfs [json]",
+	SHOW_STR
+	IP6_STR
+	"OSPF6 information\n"
+	"Show OSPF6 VRFs \n"
+	JSON_STR)
+{
+	OSPF6_CMD_CHECK_RUNNING();
+
+	ospf6_vrfs_show(vty, ospf6);
 	return CMD_SUCCESS;
 }
 
