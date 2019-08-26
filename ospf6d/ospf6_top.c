@@ -1015,6 +1015,10 @@ DEFUN (show_ipv6_ospf6_route_type_detail,
 	return CMD_SUCCESS;
 }
 
+static void ospf6_show_vrfs(struct vty *vty, struct ospf6 *o)
+{
+	vty_out(vty, "Griffin - We don't actually have VRF support yet.");
+}
 
 DEFUN(show_ipv6_ospf6_vrfs,
 	show_ipv6_ospf6_vrfs_cmd,
