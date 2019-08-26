@@ -1020,14 +1020,14 @@ static void ospf6_show_vrfs(struct vty *vty, struct ospf6 *o)
 	vty_out(vty, "Griffin - We don't actually have VRF support yet.");
 }
 
-DEFUN(show_ipv6_ospf6_vrfs,
+DEFUN (show_ipv6_ospf6_vrfs,
 	show_ipv6_ospf6_vrfs_cmd,
-	"show ipv6 ospf6 vrfs [json]",
+	"show ipv6 ospf6 vrfs",
 	SHOW_STR
 	IP6_STR
 	"OSPF6 information\n"
 	"Show OSPF6 VRFs \n"
-	JSON_STR)
+	)
 {
 	OSPF6_CMD_CHECK_RUNNING();
 
