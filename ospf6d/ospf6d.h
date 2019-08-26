@@ -102,10 +102,10 @@ extern struct route_node *route_prev(struct route_node *node);
 
 extern void ospf6_debug(void);
 extern void ospf6_init(void);
-extern void ospf_vrf_init(void);
-extern void ospf_vrf_terminate(void);
-extern void ospf_vrf_link(struct ospf *ospf, struct vrf *vrf);
-extern void ospf_vrf_unlink(struct ospf *ospf, struct vrf *vrf);
-const char *ospf_vrf_id_to_name(vrf_id_t vrf_id);
+extern void ospf6_vrf_init(void);
+extern void ospf6_vrf_terminate(void);
+extern void ospf6_vrf_link(struct ospf6 *o, struct vrf *vrf);
+extern void ospf6_vrf_unlink(struct ospf6 *o, struct vrf *vrf);
+const char *ospf6_vrf_id_to_name(vrf_id_t vrf_id);
 
 #endif /* OSPF6D_H */
