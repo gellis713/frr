@@ -23,6 +23,7 @@
 
 #include "libospf.h"
 #include "thread.h"
+#include "vrf.h"
 
 #include "ospf6_memory.h"
 
