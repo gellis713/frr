@@ -49,6 +49,8 @@ struct ospf6 {
 	struct list *area_list;
 	struct ospf6_area *backbone;
 
+	struct list *redist[ZEBRA_ROUTE_MAX + 1];
+
 	/* AS scope link state database */
 	struct ospf6_lsdb *lsdb;
 	struct ospf6_lsdb *lsdb_self;
