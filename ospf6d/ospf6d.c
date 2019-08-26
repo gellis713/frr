@@ -1265,7 +1265,7 @@ static void ospf6_set_redist_vrf_bitmaps(struct ospf6 *o)
 	}
 }
 
-static int ospf_vrf_enable(struct vrf *vrf)
+static int ospf6_vrf_enable(struct vrf *vrf)
 {
 	struct ospf6 *o = NULL;
 	vrf_id_t old_vrf_id;
@@ -1307,7 +1307,7 @@ static int ospf_vrf_enable(struct vrf *vrf)
 	return 0;
 }
 
-static int ospf_vrf_disable(struct vrf *vrf)
+static int ospf6_vrf_disable(struct vrf *vrf)
 {
 	struct ospf6 *o = NULL;
 	vrf_id_t old_vrf_id = VRF_UNKNOWN;
